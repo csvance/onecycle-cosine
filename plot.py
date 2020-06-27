@@ -18,7 +18,7 @@ model = ToyModel()
 optimizer = AdamW(model.parameters(), lr=0.01)
 
 WARMUP = 0.3
-PLATEAU = 0.3
+PLATEAU = 0.1
 WINDDOWN = 0.7
 
 N = 1000
@@ -40,6 +40,8 @@ lr = np.array(lr)
 momentum = np.array(momentum)
 
 fig, ax1 = plt.subplots()
+plt.grid()
+
 ax2 = ax1.twinx()
 
 ax1.set_xlabel('step')
