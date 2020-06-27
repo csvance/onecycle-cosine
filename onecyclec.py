@@ -22,9 +22,9 @@ class OneCycleCosine(object):
 
         :param optimizer: PyTorch Optimizer object
         :param num_steps: Total number of training steps, ie len(dataset_train)//batch_size
-        :param warmup: Proportion of time to spend in the cosine annealed warmup
-        :param plateau: Proportion of time to spend on the maximum learning rate plateau
-        :param winddown: Proportion of time to spend in the cosine annealed windown
+        :param warmup: Proportion of time to spend in the cosine annealed warmup. Will be normalized.
+        :param plateau: Proportion of time to spend on the maximum learning rate plateau. Will be normalized.
+        :param winddown: Proportion of time to spend in the cosine annealed windown. Will be normalized.
         :param lr_range: (min_lr, max_lr)
         :param momentum_range: (min_momentum, max_momentum)
         """

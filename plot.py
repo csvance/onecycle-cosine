@@ -16,11 +16,15 @@ class ToyModel(nn.Module):
 model = ToyModel()
 optimizer = AdamW(model.parameters(), lr=0.01)
 
+WARMUP = 0.3
+PLATEAU = 0.3
+WINDDOWN = 0.7
+
 N = 1000
 sched = OneCycleCosineAdam(optimizer,
-                           warmup=0.3,
-                           plateau=0.3,
-                           winddown=0.7,
+                           warmup=WARMUP,
+                           plateau=PLATEAU,
+                           winddown=WINDDOWN,
                            num_steps=N)
 
 momentum = []
@@ -43,6 +47,6 @@ ax2.set_ylabel('momentum', color='green')
 ax2.plot(momentum, color='green')
 ax2.tick_params(axis='y', labelcolor='green')
 
-plt.title('warmup = 0.3 plateau = 0.4 winddown = 0.7')
+plt.title('warmup = %.1f plateau = %.1f winddown = %.1f' % (WARMUP, PLATEAU, WINDDOWN))
 plt.savefig('sched.png', dpi=100, tight=True)
 plt.show()
