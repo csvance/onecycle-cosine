@@ -21,7 +21,7 @@ class OneCycleCosine(object):
         OneCycleCosine version for optimizers which have a momentum parameter
 
         :param optimizer: PyTorch Optimizer object
-        :param num_steps: Total number of training steps, ie len(dataset_train)//batch_size
+        :param num_steps: Total number of training steps, ie epochs*len(dataset_train)//batch_size
         :param warmup: Proportion of time to spend in the cosine annealed warmup. Will be normalized.
         :param plateau: Proportion of time to spend on the maximum learning rate plateau. Will be normalized.
         :param winddown: Proportion of time to spend in the cosine annealed windown. Will be normalized.
@@ -76,7 +76,7 @@ class OneCycleCosine(object):
             steps = self.cur_step - (self.warmup + self.plateau) * self.num_steps
             phase_steps = self.winddown * self.num_steps
 
-            lr = annealing_cos(self.lr_range[1], self.lr_range[1] / (24 * 1e4), steps / phase_steps)
+            lr = annealing_cos(self.lr_range[1], self.lr_range[1] / 24e4, steps / phase_steps)
             momentum = annealing_cos(self.momentum_range[0], self.momentum_range[1], steps / phase_steps)
         else:
             lr = 0.

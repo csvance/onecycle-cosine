@@ -3,14 +3,22 @@
 Implements the [modified version][blog] of Leslie Smith's 1cycle policy described by Sylvain Gugger and Jeremy Howard for [PyTorch][pytorch].
 This version uses cosine annealing like the FastAI version but has three phases instead of two:
 
-1. warmup - cosine annealed warmup
-2. plateau - learning rate constant at maximum and momentum constant at minimum
-3. winddown - cosine annealed winddown
+|phase|default|description|
+|-----|-------|-----------|
+|warmup|30%|lr_min -> lr_max, momentum_max -> momentum_min|
+|plateau|0%|cearning rate constant at maximum and momentum constant at minimum. Spends more time looking for an optimal minima.|
+|winddown|70%|lr_max -> lr_max / 24e4, momentum_min -> momentum_max|
+
+1. warmup (default 30%- cosine annealed warmup - 
+2. plateau -
+3. winddown - cosine annealed winddown - default 70%
 
 ![](sched.png)
 
 Phases 1 and 3 are the same as phases 1 and 2 FastAI 1cycle policy.
 Phase 2 is described in the [FastAI blogpost][blog].
+
+## Usage
 
 - OneCycleCosine should be used for optimizers which have a 'momentum' parameter
 - OneCycleCosineAdam should be used for Adam based optimizers which have a 'betas' parameter tuple
