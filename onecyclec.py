@@ -79,7 +79,7 @@ class OneCycleCosine(object):
             lr = annealing_cos(self.lr_range[1], self.lr_range[1] / 24e4, steps / phase_steps)
             momentum = annealing_cos(self.momentum_range[0], self.momentum_range[1], steps / phase_steps)
         else:
-            lr = 0.
+            lr = self.lr_range[1] / 24e4
             momentum = self.momentum_range[1]
 
         self.lr = lr
