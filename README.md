@@ -6,12 +6,9 @@ This version uses cosine annealing like the FastAI version but has three phases 
 |phase|default|description|
 |-----|-------|-----------|
 |warmup|30%|lr_min -> lr_max, momentum_max -> momentum_min|
-|plateau|0%|cearning rate constant at maximum and momentum constant at minimum. Spends more time looking for an optimal minima.|
+|plateau|0%|lr_max, momentum_min - spends more time looking for an optimal minima.|
 |winddown|70%|lr_max -> lr_max / 24e4, momentum_min -> momentum_max|
 
-1. warmup (default 30%- cosine annealed warmup - 
-2. plateau -
-3. winddown - cosine annealed winddown - default 70%
 
 ![](sched.png)
 
