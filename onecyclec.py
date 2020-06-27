@@ -73,7 +73,7 @@ class OneCycleCosine(object):
             momentum = self.momentum_range[0]
         elif (self.warmup + self.plateau) * self.num_steps <= self.cur_step < self.num_steps:
 
-            steps = (self.warmup + self.plateau) * self.num_steps - self.cur_step
+            steps = self.cur_step - (self.warmup + self.plateau) * self.num_steps
             phase_steps = self.winddown * self.num_steps
 
             lr = annealing_cos(self.lr_range[1], self.lr_range[1] / (24 * 1e4), steps / phase_steps)

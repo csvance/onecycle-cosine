@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from torch.optim import AdamW
 import torch.nn as nn
+import numpy as np
 from onecyclec import OneCycleCosineAdam
 
 
@@ -34,6 +35,9 @@ for n in range(0, N):
     momentum.append(sched.momentum)
     lr.append(sched.lr)
     sched.step()
+
+lr = np.array(lr)
+momentum = np.array(momentum)
 
 fig, ax1 = plt.subplots()
 ax2 = ax1.twinx()
